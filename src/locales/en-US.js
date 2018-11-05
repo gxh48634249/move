@@ -192,5 +192,5 @@ export default {
   'menu.system.permission': '权限管理',
   'menu.library': '全部电影',
   'menu.myLibrary': '评论管理',
-  'menu.tuijian': '个人推荐',
+  'menu.tuijian': '个性推荐',
 };

@@ -26,7 +26,6 @@ class All extends React.Component{
   };
 
   initData = () => {
-    console.log(123)
     const { dispatch } = this.props;
     dispatch({
       type: 'library/queryMy',
@@ -144,14 +143,10 @@ class All extends React.Component{
       dataIndex: 'message',
       key: 'message',
     }];
-    const content = (<Button type='primary' onClick={this.initData}>换一批</Button>);
     return (
       <PageHeaderWrapper
         title="个性推荐"
-        content={content}
       >
-        <Tabs activeKey={this.state.activeKey} onTabClick={this.onChange} >
-          <TabPane tab="电影列表" key="1">
             <List
               itemLayout="vertical"
               size="large"
@@ -162,7 +157,7 @@ class All extends React.Component{
                 },
                 pageSize: 5,
               }}
-              dataSource={this.props.library.treeData}
+              dataSource={this.props.library.tuijian}
               renderItem={item => (
                 <List.Item
                   key={item.title}
@@ -181,33 +176,6 @@ class All extends React.Component{
                 </List.Item>
               )}
             />
-          </TabPane>
-          <TabPane tab="评论信息" key="2">
-            <Button type="primary" onClick={this.toggleMessageB}><Icon type="left" />返回电影列表</Button>
-            <List
-              itemLayout="vertical"
-              size="large"
-              dataSource={this.props.library.treeData}
-              renderItem={item => (
-                <List.Item>
-                  <List.Item.Meta
-                    avatar={<Avatar src={item.avatar} />}
-                    title={item.title}
-                    description={item.description}
-                  />
-                  <Button name={item.title} type="primary" onClick={this.showModal}>添加{item.title}评论</Button>
-                  <CollectionCreateForm
-                    wrappedComponentRef={this.saveFormRef}
-                    visible={this.state.visible}
-                    onCancel={this.handleCancel}
-                    onCreate={this.handleCreate}
-                  />
-                  <Table dataSource={item.message} columns={columns} colSpan={0} />
-                </List.Item>
-              )}
-            />
-          </TabPane>
-        </Tabs>
       </PageHeaderWrapper>
     )
   }
